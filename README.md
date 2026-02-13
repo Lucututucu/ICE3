@@ -9,6 +9,22 @@ Targeted toward Digilent Basys3. Make sure to install the [board files](https://
 Tested on Vivado 2024.2
 
 ---
+![Waveform for the Ripple Adder on various test cases](ripple_adder_waveform.png)
+
+![Sketch of the basys3 implementation of the Ripple Adder](ripple_adder_basys3_sketch.png)
+
+## Documentation
+
+In the top_basys3 file in Vivado, I struggled to get the wiring to work. I asked ChatGPT for advice on what to code. I originally had
+A : in std_logic;
+and it told me I needed a std_logic_vector since A is multiple bits. Using this information I changed it to
+A : in std_logic_vector(3 downto 0);
+
+Later, the port maps were not working, so I pasted them to ChatGPT and asked if there was anything wrong it could tell me. It told me that I had switched my logic for the outputs S and Cout. I originally had
+S => led(15), Cout => led(3 downto 0)
+and I needed to have
+S => led(3 downto 0), Cout => led(15).
+
 
 ## GitHub Actions Testbench
 
